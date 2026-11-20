@@ -206,7 +206,9 @@ set(veyoncore_SOURCES
 	src/Configuration/Property.h
 	src/Configuration/Proxy.cpp
 	src/Configuration/Proxy.h
-	src/Configuration/SecretProperties.h
+	src/Configuration/SecretProperty.h
+	src/Configuration/SecretPropertyRegistry.cpp
+	src/Configuration/SecretPropertyRegistry.h
 	src/Configuration/SecretReference.cpp
 	src/Configuration/SecretReference.h
 	src/Configuration/Store.h

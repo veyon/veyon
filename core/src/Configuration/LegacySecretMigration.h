@@ -14,7 +14,9 @@ class Object;
 // Moves the values of the former Configuration::Password properties (RSA ciphertext with the
 // public default-pkey.pem, i.e. readable by anyone with the binaries) into the SecretStore and
 // replaces them with their SecretReference (03-secretstore-config.md §4). The migrated properties
-// are the rows of the SecretProperties registry with isLegacyPassword set. This is the only place
+// are the rows of the SecretPropertyRegistry with isLegacyPassword set; values of properties which
+// are not registered (e.g. of a plugin which is not installed) are left untouched until a
+// privileged start with the plugin installed migrates them (§3a). This is the only place
 // that decrypts stored legacy values. It runs in privileged components only (SecretStore
 // available): at every start of veyon-service and of an elevated veyon-cli/veyon-configurator, so
 // that values re-applied by a GPO or configuration management are removed again, and for

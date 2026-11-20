@@ -38,6 +38,15 @@ LdapPlugin::~LdapPlugin()
 
 
 
+Configuration::SecretPropertyList LdapPlugin::secretProperties() const
+{
+	return {
+		{QStringLiteral("LDAP"), QStringLiteral("BindPassword"), QStringLiteral("ldap/bindPassword"), true},
+	};
+}
+
+
+
 void LdapPlugin::upgrade(const QVersionNumber& oldVersion)
 {
 	if (oldVersion < QVersionNumber(1, 1))

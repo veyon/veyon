@@ -10,6 +10,7 @@
 #include <QRadioButton>
 #include <QSpinBox>
 
+#include "Configuration/SecretPropertyRegistry.h"
 #include "Configuration/UiMapping.h"
 #include "SecretStore.h"
 
@@ -169,7 +170,7 @@ void UiMapping::connectWidgetToProperty(const Configuration::TypedProperty<QStri
 void UiMapping::connectWidgetToProperty(const Configuration::TypedProperty<SecretReference>& property, QLineEdit* widget)
 {
 	QObject::connect(widget, &QLineEdit::editingFinished, property.lambdaContext(), [&property, widget]() {
-		const auto reference = SecretReference::fromString(property.defaultValue().toString());
+		const auto reference = Configuration::SecretPropertyRegistry::ownReference(property);
 		if (widget->text().isEmpty() || reference.isValid() == false || SecretStore::isAvailable() == false)
 		{
 			return;

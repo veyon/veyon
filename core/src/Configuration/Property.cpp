@@ -4,6 +4,7 @@
 #include "Configuration/Object.h"
 #include "Configuration/Property.h"
 #include "Configuration/Proxy.h"
+#include "Configuration/SecretPropertyRegistry.h"
 
 
 namespace Configuration {
@@ -113,7 +114,12 @@ Password Configuration::TypedProperty<Password>::value() const
 template<>
 SecretReference Configuration::TypedProperty<SecretReference>::value() const
 {
-	const auto ownReference = SecretReference::fromString(defaultValue().toString());
+	const auto ownReference = SecretPropertyRegistry::ownReference(*this);
+	if (ownReference.isValid() == false)
+	{
+		return {};
+	}
+
 	const auto storedValue = variantValue().toString();
 
 	if (storedValue.isEmpty() || storedValue == ownReference.toString())

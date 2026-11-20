@@ -6,6 +6,7 @@
 #include <QMutex>
 #include <QPluginLoader>
 
+#include "Configuration/SecretPropertyRegistry.h"
 #include "Logger.h"
 #include "PluginManager.h"
 #include "VeyonConfiguration.h"
@@ -57,6 +58,12 @@ void PluginManager::loadPlatformPlugins()
 void PluginManager::loadPlugins()
 {
 	loadPlugins(QStringLiteral("*") + VeyonCore::sharedLibrarySuffix());
+
+	// before anything uses the registry, e.g. the legacy secret migration (03-secretstore-config.md §3a)
+	for (auto pluginInterface : std::as_const(m_pluginInterfaces))
+	{
+		Configuration::SecretPropertyRegistry::addPluginProperties(*pluginInterface);
+	}
 }
 
 
@@ -249,6 +256,11 @@ void PluginManager::loadPlugins(const QString& nameFilter)
 		}
 		else
 		{
+			if (pluginObject && pluginInterface == nullptr)
+			{
+				vCritical() << "plugin" << fileInfo.filePath()
+							<< "does not implement the plugin interface of this Veyon version and was not loaded";
+			}
 			delete pluginLoader;
 		}
 	}

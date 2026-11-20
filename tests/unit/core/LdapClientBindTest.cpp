@@ -7,7 +7,7 @@
 #include <QtTest>
 
 #include "Configuration/JsonStore.h"
-#include "Configuration/SecretProperties.h"
+#include "Configuration/SecretPropertyRegistry.h"
 #include "ExternalVncServerConfiguration.h"
 #include "LdapClient.h"
 #include "LdapConfiguration.h"
@@ -146,6 +146,22 @@ private:
 	}
 
 private Q_SLOTS:
+	// the rows LdapPlugin::secretProperties() and ExternalVncServer::secretProperties() declare
+	void initTestCase()
+	{
+		QVERIFY(Configuration::SecretPropertyRegistry::add({QStringLiteral("LDAP"), QStringLiteral("BindPassword"),
+															QStringLiteral("ldap/bindPassword"), true},
+														   QStringLiteral("LDAP")));
+		QVERIFY(Configuration::SecretPropertyRegistry::add({QStringLiteral("ExternalVncServer"), QStringLiteral("Password"),
+															QStringLiteral("vncserver-external/password"), true},
+														   QStringLiteral("ExternalVncServer")));
+	}
+
+	void cleanupTestCase()
+	{
+		Configuration::SecretPropertyRegistry::resetForTests();
+	}
+
 	void init()
 	{
 		m_backend.m_secrets.clear();
@@ -179,9 +195,9 @@ private Q_SLOTS:
 		runClient(counter, false);
 	}
 
-	// the property of the plugin and the static registry of secret properties agree
-	// every SecretReference property (core and plugins with secrets) has a row in the static
-	// registry with a matching default value and vice versa (WP4 re-review N6)
+	// the properties of the plugins and the rows they declare agree: every SecretReference property
+	// (core and plugins with secrets) has a row in the registry with a matching default value and
+	// vice versa (WP4 re-review N6)
 	void registeredSecretProperties()
 	{
 		QTemporaryDir directory;
@@ -198,15 +214,15 @@ private Q_SLOTS:
 			{
 				continue;
 			}
-			const auto secretProperty = Configuration::findSecretProperty(property->parentKey(), property->key());
-			QVERIFY2(secretProperty, qPrintable(property->absoluteKey()));
+			const auto secretProperty = Configuration::SecretPropertyRegistry::find(property->parentKey(), property->key());
+			QVERIFY2(secretProperty.has_value(), qPrintable(property->absoluteKey()));
 			QCOMPARE(property->defaultValue(), Configuration::SecretReference::defaultValue(secretProperty->secretKey));
 			foundSecretKeys.append(secretProperty->secretKey);
 		}
 
-		for (const auto& secretProperty : Configuration::SecretProperties)
+		for (const auto& secretProperty : Configuration::SecretPropertyRegistry::properties())
 		{
-			QVERIFY2(foundSecretKeys.contains(secretProperty.secretKey), secretProperty.secretKey.data());
+			QVERIFY2(foundSecretKeys.contains(secretProperty.secretKey), qPrintable(secretProperty.secretKey));
 		}
 	}
 

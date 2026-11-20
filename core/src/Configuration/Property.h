@@ -6,7 +6,6 @@
 #include <QUuid>
 
 #include "Configuration/Password.h"
-#include "Configuration/SecretProperties.h"
 #include "Configuration/SecretReference.h"
 #include "VeyonCore.h"
 
@@ -98,13 +97,11 @@ public:
 	}
 
 protected:
+	// not checked against the SecretPropertyRegistry here: plugins create their configuration
+	// objects before the registry is complete; the value is resolved via the registry instead
 	void markAsSecretReference()
 	{
 		m_isSecretReference = true;
-
-		// every secret property must have a row in SecretProperties with its key as default value
-		Q_ASSERT(findSecretProperty(m_parentKey, m_key) &&
-				 m_defaultValue == SecretReference::defaultValue(findSecretProperty(m_parentKey, m_key)->secretKey));
 	}
 
 private:
@@ -159,8 +156,9 @@ public:
 template<>
 VEYON_CORE_EXPORT Password TypedProperty<Password>::value() const;
 
-// always the property's own reference (its default value), or an invalid reference if the
-// configuration holds a legacy value or a reference to a different key
+// always the property's own reference (its key in the SecretPropertyRegistry, which must match its
+// default value), or an invalid reference if the property is not registered or the configuration
+// holds a legacy value or a reference to a different key
 template<>
 VEYON_CORE_EXPORT SecretReference TypedProperty<SecretReference>::value() const;
 

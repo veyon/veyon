@@ -18,6 +18,15 @@ ExternalVncServer::ExternalVncServer(QObject* parent) :
 
 
 
+Configuration::SecretPropertyList ExternalVncServer::secretProperties() const
+{
+	return {
+		{QStringLiteral("ExternalVncServer"), QStringLiteral("Password"), QStringLiteral("vncserver-external/password"), true},
+	};
+}
+
+
+
 QWidget* ExternalVncServer::configurationWidget()
 {
 	return new ExternalVncServerConfigurationWidget(m_configuration);

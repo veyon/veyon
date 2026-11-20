@@ -11,7 +11,7 @@
 #include "Configuration/JsonStore.h"
 #include "Configuration/LegacySecretMigration.h"
 #include "Configuration/Proxy.h"
-#include "Configuration/SecretProperties.h"
+#include "Configuration/SecretPropertyRegistry.h"
 #include "CryptoCore.h"
 #include "PlatformSecretFunctions.h"
 #include "SecretExport.h"
@@ -21,6 +21,7 @@
 #include <map>
 
 using Configuration::LegacySecretMigration;
+using Configuration::SecretPropertyRegistry;
 using Configuration::SecretReference;
 using Veyon::Crypto::SecureBuffer;
 
@@ -95,6 +96,13 @@ public:
 DECLARE_CONFIG_PROXY(TestSecretConfiguration, FOREACH_TEST_SECRET_CONFIG_PROPERTY)
 IMPLEMENT_CONFIG_PROXY(TestSecretConfiguration)
 
+// a secret property of a plugin which is not loaded
+#define FOREACH_UNREGISTERED_SECRET_CONFIG_PROPERTY(OP) \
+	OP(UnregisteredSecretConfiguration, m_configuration, Configuration::SecretReference, clientSecret, setClientSecret, "ClientSecret", "NotInstalled", Configuration::SecretReference::defaultValue(QStringLiteral("not-installed/clientSecret")), Configuration::Property::Flag::Standard)
+
+DECLARE_CONFIG_PROXY(UnregisteredSecretConfiguration, FOREACH_UNREGISTERED_SECRET_CONFIG_PROPERTY)
+IMPLEMENT_CONFIG_PROXY(UnregisteredSecretConfiguration)
+
 
 // 03-secretstore-config.md §6 (platform-independent part; file permissions, symlinks and
 // atomicity of the Linux backend: tests/unit/LinuxSecretFunctionsTest.cpp)
@@ -154,10 +162,26 @@ private Q_SLOTS:
 	{
 		QVERIFY(m_temporaryDirectory.isValid());
 		m_cryptoCore = new CryptoCore;
+
+		// the rows of the LDAP and external VNC server plugins (LdapPlugin, ExternalVncServer) and of
+		// an add-on, as PluginManager::loadPlugins() adds them
+		QVERIFY(SecretPropertyRegistry::add({QStringLiteral("LDAP"), QStringLiteral("BindPassword"),
+											 QStringLiteral("ldap/bindPassword"), true},
+											QStringLiteral("LDAP")));
+		QVERIFY(SecretPropertyRegistry::add({QStringLiteral("ExternalVncServer"), QStringLiteral("Password"),
+											 QStringLiteral("vncserver-external/password"), true},
+											QStringLiteral("ExternalVncServer")));
+		QVERIFY(SecretPropertyRegistry::add({QStringLiteral("AddOn/Client"), QStringLiteral("Secret"),
+											 QStringLiteral("add-on/clientSecret"), true},
+											QStringLiteral("AddOn")));
+		QVERIFY(SecretPropertyRegistry::add({QStringLiteral("AddOn/Client"), QStringLiteral("CertificateKey"),
+											 QStringLiteral("add-on/clientCertificateKey"), false},
+											QStringLiteral("AddOn")));
 	}
 
 	void cleanupTestCase()
 	{
+		SecretPropertyRegistry::resetForTests();
 		delete m_cryptoCore;
 	}
 
@@ -310,24 +334,27 @@ private Q_SLOTS:
 		QCOMPARE(m_backend.value(QStringLiteral("ldap/bindPassword")), QByteArray(MarkerSecret));
 	}
 
-	// L8: the static registry decides which configuration keys are secrets
+	// L8: the registry decides which configuration keys are secrets
 	void secretPropertyRegistry()
 	{
 		QStringList secretKeys;
-		for (const auto& secretProperty : Configuration::SecretProperties)
+		for (const auto& secretProperty : SecretPropertyRegistry::properties())
 		{
 			QVERIFY(SecretStore::isValidKey(secretProperty.secretKey));
 			QVERIFY(secretKeys.contains(secretProperty.secretKey) == false);
 			secretKeys.append(secretProperty.secretKey);
-			QCOMPARE(Configuration::findSecretProperty(secretProperty.parentKey, secretProperty.key), &secretProperty);
+			const auto foundProperty = SecretPropertyRegistry::find(secretProperty.parentKey, secretProperty.key);
+			QVERIFY(foundProperty.has_value());
+			QCOMPARE(foundProperty->secretKey, secretProperty.secretKey);
 		}
+		QCOMPARE(SecretPropertyRegistry::secretKeys(), secretKeys);
 		QVERIFY(secretKeys.contains(QStringLiteral("ldap/bindPassword")));
 		QVERIFY(secretKeys.contains(QStringLiteral("vncserver-external/password")));
-		QVERIFY(Configuration::findSecretProperty(QStringLiteral("LDAP"), QStringLiteral("BindDN")) == nullptr);
-		QVERIFY(Configuration::findSecretProperty(QStringLiteral("Foo"), QStringLiteral("MyPassword")) == nullptr);
+		QVERIFY(SecretPropertyRegistry::find(QStringLiteral("LDAP"), QStringLiteral("BindDN")).has_value() == false);
+		QVERIFY(SecretPropertyRegistry::find(QStringLiteral("Foo"), QStringLiteral("MyPassword")).has_value() == false);
 
 		// N4: case variants and empty key components never bypass the registry
-		QVERIFY(Configuration::findSecretProperty(QStringLiteral("ldap"), QStringLiteral("bindpassword")));
+		QVERIFY(SecretPropertyRegistry::find(QStringLiteral("ldap"), QStringLiteral("bindpassword")).has_value());
 		QString key;
 		QString parentKey;
 		QVERIFY(Configuration::splitConfigurationKey(QStringLiteral("LDAP/BindPassword"), key, parentKey));
@@ -342,13 +369,17 @@ private Q_SLOTS:
 		}
 
 		// N7: unsetting a group removes the secrets of its properties
-		QCOMPARE(Configuration::secretKeysBelow(QStringLiteral("LDAP")), QStringList{QStringLiteral("ldap/bindPassword")});
-		QCOMPARE(Configuration::secretKeysBelow(QStringLiteral("ldap/bindpassword")), QStringList{QStringLiteral("ldap/bindPassword")});
-		QCOMPARE(Configuration::secretKeysBelow(QStringLiteral("ExternalVncServer")),
+		QCOMPARE(SecretPropertyRegistry::secretKeysBelow(QStringLiteral("LDAP")), QStringList{QStringLiteral("ldap/bindPassword")});
+		QCOMPARE(SecretPropertyRegistry::secretKeysBelow(QStringLiteral("ldap/bindpassword")), QStringList{QStringLiteral("ldap/bindPassword")});
+		QCOMPARE(SecretPropertyRegistry::secretKeysBelow(QStringLiteral("ExternalVncServer")),
 				 QStringList{QStringLiteral("vncserver-external/password")});
-		QVERIFY(Configuration::secretKeysBelow(QStringLiteral("LDAP/BindDN")).isEmpty());
-		QVERIFY(Configuration::secretKeysBelow(QStringLiteral("LDA")).isEmpty());
-		QVERIFY(Configuration::secretKeysBelow(QStringLiteral("Network")).isEmpty());
+		QVERIFY(SecretPropertyRegistry::secretKeysBelow(QStringLiteral("LDAP/BindDN")).isEmpty());
+		QVERIFY(SecretPropertyRegistry::secretKeysBelow(QStringLiteral("LDA")).isEmpty());
+		QVERIFY(SecretPropertyRegistry::secretKeysBelow(QStringLiteral("Network")).isEmpty());
+		// rows of plugins (add-ons), also in sub groups
+		QCOMPARE(SecretPropertyRegistry::secretKeysBelow(QStringLiteral("AddOn")),
+				 (QStringList{QStringLiteral("add-on/clientSecret"), QStringLiteral("add-on/clientCertificateKey")}));
+		QVERIFY(SecretPropertyRegistry::secretKeysBelow(QStringLiteral("NotInstalled")).isEmpty());
 	}
 
 	void secretReference()
@@ -389,6 +420,18 @@ private Q_SLOTS:
 		proxy.setBindPassword(SecretReference(QStringLiteral("ldap/bindPassword")));
 		QCOMPARE(value(configuration, QStringLiteral("BindPassword"), QStringLiteral("LDAP")),
 				 QStringLiteral("secret:ldap/bindPassword"));
+	}
+
+	// §3a: a property which is not in the registry (e.g. its row was rejected) is never resolved
+	void unregisteredSecretReferenceProperty()
+	{
+		Configuration::JsonStore store(Configuration::Store::Scope::System, configurationFile(QStringLiteral("unregistered")));
+		VeyonConfiguration configuration(&store);
+		UnregisteredSecretConfiguration proxy(&configuration);
+
+		QVERIFY(proxy.clientSecretProperty().isSecretReference());
+		QVERIFY(proxy.clientSecret().isValid() == false);
+		QVERIFY(m_logMessages.filter(QStringLiteral("is not registered")).isEmpty() == false);
 	}
 
 	// H1 of the WP4 review: top-level values (e.g. the secrets document of an export) must be removable
@@ -458,6 +501,66 @@ private Q_SLOTS:
 		m_backend.m_secrets.erase(QStringLiteral("ldap/bindPassword"));
 		QCOMPARE(LegacySecretMigration::migrate(configuration, *m_cryptoCore), LegacySecretMigration::Result::NothingToMigrate);
 		QVERIFY(m_backend.m_secrets.count(QStringLiteral("ldap/bindPassword")) == 0);
+	}
+
+	// a former password property declared by a plugin (add-on) is migrated like the core ones;
+	// its non-legacy secret property is not touched
+	void migrationOfPluginSecret()
+	{
+		Configuration::JsonStore store(Configuration::Store::Scope::System, configurationFile(QStringLiteral("add-on")));
+		VeyonConfiguration configuration(&store);
+		configuration.setValue(QStringLiteral("Secret"), legacyValue(MarkerSecret), QStringLiteral("AddOn/Client"));
+		configuration.setValue(QStringLiteral("CertificateKey"), QStringLiteral("plain"), QStringLiteral("AddOn/Client"));
+
+		QVERIFY(LegacySecretMigration::hasLegacySecrets(configuration));
+		QCOMPARE(LegacySecretMigration::migrate(configuration, *m_cryptoCore), LegacySecretMigration::Result::Migrated);
+		QCOMPARE(m_backend.value(QStringLiteral("add-on/clientSecret")), QByteArray(MarkerSecret));
+		QCOMPARE(value(configuration, QStringLiteral("Secret"), QStringLiteral("AddOn/Client")),
+				 QStringLiteral("secret:add-on/clientSecret"));
+		QCOMPARE(value(configuration, QStringLiteral("CertificateKey"), QStringLiteral("AddOn/Client")), QStringLiteral("plain"));
+		QVERIFY(m_backend.m_secrets.count(QStringLiteral("add-on/clientCertificateKey")) == 0);
+		QVERIFY(LegacySecretMigration::hasLegacySecrets(configuration) == false);
+	}
+
+	// §3a: values of properties of plugins which are not loaded are left untouched, also at
+	// privileged start, so that they can be migrated once the plugin is installed
+	void unregisteredPropertiesUntouched()
+	{
+		const auto fileName = configurationFile(QStringLiteral("not-installed"));
+		const auto legacyPassword = legacyValue(MarkerSecret);
+		Configuration::JsonStore store(Configuration::Store::Scope::System, fileName);
+		VeyonConfiguration stored(&store);
+		stored.setValue(QStringLiteral("ClientSecret"), legacyPassword, QStringLiteral("NotInstalled"));
+		stored.setValue(QStringLiteral("ClientCertificateKey"), QStringLiteral("secret:not-installed/clientCertificateKey"),
+						QStringLiteral("NotInstalled"));
+		stored.setValue(QStringLiteral("Other"), QStringLiteral("secret:pki/caKey"), QStringLiteral("NotInstalled"));
+		VeyonConfiguration running(&store);
+
+		QVERIFY(LegacySecretMigration::hasLegacySecrets(stored) == false);
+		QCOMPARE(LegacySecretMigration::migrateStoredConfiguration(stored, running, *m_cryptoCore),
+				 LegacySecretMigration::Result::NothingToMigrate);
+		QVERIFY(LegacySecretMigration::scrubConfiguration(stored) == false);
+		QCOMPARE(LegacySecretMigration::removeLegacySecrets(stored), 0);
+		QVERIFY(LegacySecretMigration::missingSecretKeys(stored).isEmpty());
+
+		QCOMPARE(value(stored, QStringLiteral("ClientSecret"), QStringLiteral("NotInstalled")), legacyPassword);
+		QCOMPARE(value(stored, QStringLiteral("ClientCertificateKey"), QStringLiteral("NotInstalled")),
+				 QStringLiteral("secret:not-installed/clientCertificateKey"));
+		QCOMPARE(value(stored, QStringLiteral("Other"), QStringLiteral("NotInstalled")), QStringLiteral("secret:pki/caKey"));
+		QVERIFY(m_backend.m_secrets.empty());
+
+		// once the plugin is installed, the next privileged start migrates the legacy value
+		QVERIFY(SecretPropertyRegistry::add({QStringLiteral("NotInstalled"), QStringLiteral("ClientSecret"),
+											 QStringLiteral("not-installed/clientSecret"), true},
+											QStringLiteral("NotInstalled")));
+		QCOMPARE(LegacySecretMigration::migrateStoredConfiguration(stored, running, *m_cryptoCore),
+				 LegacySecretMigration::Result::Migrated);
+		QCOMPARE(m_backend.value(QStringLiteral("not-installed/clientSecret")), QByteArray(MarkerSecret));
+		QCOMPARE(value(stored, QStringLiteral("ClientSecret"), QStringLiteral("NotInstalled")),
+				 QStringLiteral("secret:not-installed/clientSecret"));
+		QCOMPARE(value(running, QStringLiteral("ClientSecret"), QStringLiteral("NotInstalled")),
+				 QStringLiteral("secret:not-installed/clientSecret"));
+		QCOMPARE(value(stored, QStringLiteral("Other"), QStringLiteral("NotInstalled")), QStringLiteral("secret:pki/caKey"));
 	}
 
 	void migrationOfSpecialValues()

@@ -6,6 +6,7 @@
 #include <QObject>
 #include <QVersionNumber>
 
+#include "Configuration/SecretProperty.h"
 #include "Plugin.h"
 #include "VeyonCore.h"
 
@@ -28,10 +29,20 @@ public:
 	{
 		Q_UNUSED(oldVersion)
 	}
+
+	// the plugin's configuration properties holding a Configuration::SecretReference with their
+	// fixed SecretStore keys (03-secretstore-config.md §3a); merged into the
+	// Configuration::SecretPropertyRegistry after loading the plugins
+	virtual Configuration::SecretPropertyList secretProperties() const
+	{
+		return {};
+	}
 };
 
 using PluginInterfaceList = QList<PluginInterface*>;
 
-#define PluginInterface_iid "io.veyon.Veyon.Plugins.PluginInterface"
+// versioned since secretProperties() changed the interface in 4.12: plugins built for an older
+// version don't implement this interface and are not loaded
+#define PluginInterface_iid "io.veyon.Veyon.Plugins.PluginInterface/2"
 
 Q_DECLARE_INTERFACE(PluginInterface, PluginInterface_iid)

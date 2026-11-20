@@ -15,7 +15,7 @@
 #include "AboutDialog.h"
 #include "Configuration/JsonStore.h"
 #include "Configuration/LegacySecretMigration.h"
-#include "Configuration/SecretProperties.h"
+#include "Configuration/SecretPropertyRegistry.h"
 #include "Configuration/UiMapping.h"
 #include "ConfigurationManager.h"
 #include "ConfigurationPagePluginInterface.h"
@@ -259,7 +259,7 @@ void MainWindow::resetConfiguration()
 		// like veyon-cli config clear: a reset configuration must not keep old secrets effective
 		if (SecretStore::isAvailable())
 		{
-			for (const auto& secretProperty : Configuration::SecretProperties)
+			for (const auto& secretProperty : Configuration::SecretPropertyRegistry::properties())
 			{
 				if (SecretStore::remove(secretProperty.secretKey) == false)
 				{

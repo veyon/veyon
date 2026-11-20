@@ -7,7 +7,7 @@
 #include "Configuration/LegacySecretMigration.h"
 #include "Configuration/Object.h"
 #include "Configuration/Password.h"
-#include "Configuration/SecretProperties.h"
+#include "Configuration/SecretPropertyRegistry.h"
 #include "Configuration/SecretReference.h"
 #include "CryptoCore.h"
 #include "SecretExport.h"
@@ -57,7 +57,7 @@ static std::optional<Veyon::Crypto::SecureBuffer> decryptLegacyValue(const QStri
 
 bool LegacySecretMigration::hasLegacySecrets(const Object& configuration)
 {
-	for (const auto& secretProperty : SecretProperties)
+	for (const auto& secretProperty : SecretPropertyRegistry::properties())
 	{
 		if (secretProperty.isLegacyPassword && SecretReference::isLegacyValue(storedValue(configuration, secretProperty)))
 		{
@@ -88,7 +88,7 @@ LegacySecretMigration::Result LegacySecretMigration::migrate(Object& configurati
 
 	auto result = Result::Migrated;
 
-	for (const auto& secretProperty : SecretProperties)
+	for (const auto& secretProperty : SecretPropertyRegistry::properties())
 	{
 		const auto legacyValue = storedValue(configuration, secretProperty);
 		if (secretProperty.isLegacyPassword == false || SecretReference::isLegacyValue(legacyValue) == false)
@@ -96,7 +96,7 @@ LegacySecretMigration::Result LegacySecretMigration::migrate(Object& configurati
 			continue;
 		}
 
-		const QString propertyKey = secretProperty.parentKey + QLatin1Char('/') + secretProperty.key;
+		const auto propertyKey = secretProperty.propertyKey();
 		const auto reference = SecretReference(secretProperty.secretKey).toString();
 
 		// a legacy value (e.g. re-applied by a GPO or configuration management) never replaces a
@@ -156,7 +156,7 @@ QStringList LegacySecretMigration::missingSecretKeys(const Object& configuration
 	const auto storedKeys = SecretStore::keys();
 
 	QStringList missingKeys;
-	for (const auto& secretProperty : SecretProperties)
+	for (const auto& secretProperty : SecretPropertyRegistry::properties())
 	{
 		const auto reference = SecretReference::fromString(storedValue(configuration, secretProperty));
 		if (reference.isValid() && storedKeys.contains(reference.key()) == false &&
@@ -182,7 +182,7 @@ bool LegacySecretMigration::scrubConfiguration(Object& configuration)
 		changed = true;
 	}
 
-	for (const auto& secretProperty : SecretProperties)
+	for (const auto& secretProperty : SecretPropertyRegistry::properties())
 	{
 		const auto value = storedValue(configuration, secretProperty);
 		const auto ownReference = SecretReference(secretProperty.secretKey).toString();
@@ -248,7 +248,7 @@ LegacySecretMigration::Result LegacySecretMigration::migrateStoredConfiguration(
 	}
 	storedConfiguration.flushStore();
 
-	for (const auto& secretProperty : SecretProperties)
+	for (const auto& secretProperty : SecretPropertyRegistry::properties())
 	{
 		const auto value = storedValue(storedConfiguration, secretProperty);
 		if (SecretReference::fromString(value).isValid())
@@ -268,7 +268,7 @@ int LegacySecretMigration::removeLegacySecrets(Object& configuration)
 {
 	int count = 0;
 
-	for (const auto& secretProperty : SecretProperties)
+	for (const auto& secretProperty : SecretPropertyRegistry::properties())
 	{
 		if (secretProperty.isLegacyPassword && SecretReference::isLegacyValue(storedValue(configuration, secretProperty)))
 		{

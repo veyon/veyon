@@ -11,7 +11,7 @@
 #include "ConfigCommands.h"
 #include "Configuration/JsonStore.h"
 #include "Configuration/LegacySecretMigration.h"
-#include "Configuration/SecretProperties.h"
+#include "Configuration/SecretPropertyRegistry.h"
 #include "ConfigurationManager.h"
 #include "ConstantTime.h"
 #include "CryptoCore.h"
@@ -77,7 +77,7 @@ CommandLinePluginInterface::RunResult ConfigCommands::handle_clear(const QString
 	{
 		const auto storedKeys = SecretStore::keys();
 		QStringList removedSecretKeys;
-		for (const auto& secretProperty : Configuration::SecretProperties)
+		for (const auto& secretProperty : Configuration::SecretPropertyRegistry::properties())
 		{
 			if (SecretStore::remove(secretProperty.secretKey) == false)
 			{
@@ -397,7 +397,7 @@ CommandLinePluginInterface::RunResult ConfigCommands::handle_set(const QStringLi
 		return operationError(tr("Please specify a valid key."));
 	}
 
-	const auto secretProperty = Configuration::findSecretProperty(parentKey, key);
+	const auto secretProperty = Configuration::SecretPropertyRegistry::find(parentKey, key);
 	if (secretProperty)
 	{
 		return setSecret(*secretProperty, arguments.size() > 1 ? std::optional<QString>(value) : std::nullopt);
@@ -459,7 +459,7 @@ CommandLinePluginInterface::RunResult ConfigCommands::handle_unset(const QString
 
 	// a secret property or a group containing secret properties: remove their secrets as well
 	const auto fullKey = parentKey.isEmpty() ? key : QString(parentKey + QLatin1Char('/') + key);
-	const auto removedSecretKeys = Configuration::secretKeysBelow(fullKey);
+	const auto removedSecretKeys = Configuration::SecretPropertyRegistry::secretKeysBelow(fullKey);
 	if (removedSecretKeys.isEmpty() == false)
 	{
 		if (SecretStore::isAvailable() == false)
@@ -544,14 +544,7 @@ std::optional<ConfigCommands::Options> ConfigCommands::parseOptions(const QStrin
 
 QStringList ConfigCommands::configuredSecretKeys()
 {
-	QStringList keys;
-
-	for (const auto& secretProperty : Configuration::SecretProperties)
-	{
-		keys.append(secretProperty.secretKey);
-	}
-
-	return keys;
+	return Configuration::SecretPropertyRegistry::secretKeys();
 }
 
 
@@ -719,8 +712,8 @@ CommandLinePluginInterface::RunResult ConfigCommands::setSecret(const Configurat
 		return operationError(tr("Writing secrets requires administrator privileges."));
 	}
 
-	const Configuration::SecretReference reference{QString(secretProperty.secretKey)};
-	const QString propertyKey = secretProperty.parentKey + QLatin1Char('/') + secretProperty.key;
+	const Configuration::SecretReference reference{secretProperty.secretKey};
+	const auto propertyKey = secretProperty.propertyKey();
 
 	std::optional<Veyon::Crypto::SecureBuffer> secret;
 	if (value.has_value() == false || *value == QLatin1String("-"))

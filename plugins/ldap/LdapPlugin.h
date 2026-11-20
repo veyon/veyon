@@ -57,6 +57,8 @@ public:
 
 	void upgrade(const QVersionNumber& oldVersion) override;
 
+	Configuration::SecretPropertyList secretProperties() const override;
+
 	QString commandLineModuleName() const override
 	{
 		return QStringLiteral("ldap");

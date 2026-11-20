@@ -50,6 +50,8 @@ public:
 		return Plugin::NoFlags;
 	}
 
+	Configuration::SecretPropertyList secretProperties() const override;
+
 	QStringList supportedSessionTypes() const override
 	{
 		return {};
