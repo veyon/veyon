@@ -5,6 +5,8 @@
 #include <QCloseEvent>
 #include <QDir>
 #include <QFileDialog>
+#include <QJsonDocument>
+#include <QJsonParseError>
 #include <QMessageBox>
 #include <QProcess>
 #include <QPushButton>
@@ -175,6 +177,30 @@ void MainWindow::loadSettingsFromFile()
 													QDir::homePath(), tr("JSON files (*.json)"));
 	if (!fileName.isEmpty())
 	{
+		// check file before loading it since JsonStore::load() only logs errors
+		QFile jsonFile(fileName);
+		if (jsonFile.open(QFile::ReadOnly) == false)
+		{
+			QMessageBox::critical(this, tr("Load settings from file"),
+								  tr("Could not open the file %1 for reading: %2").arg(fileName, jsonFile.errorString()));
+			return;
+		}
+
+		QJsonParseError parseError{};
+		const auto jsonDocument = QJsonDocument::fromJson(jsonFile.readAll(), &parseError);
+		jsonFile.close();
+
+		if (parseError.error != QJsonParseError::NoError || jsonDocument.isObject() == false)
+		{
+			auto message = tr("The file %1 does not contain valid settings.").arg(fileName);
+			if (parseError.error != QJsonParseError::NoError)
+			{
+				message += QLatin1Char('\n') + parseError.errorString();
+			}
+			QMessageBox::critical(this, tr("Load settings from file"), message);
+			return;
+		}
+
 		// write current configuration to output file
 		Configuration::JsonStore(Configuration::JsonStore::Scope::System, fileName).load(&VeyonCore::config());
 		reset(true);
@@ -195,6 +221,17 @@ void MainWindow::saveSettingsToFile()
 			fileName += QStringLiteral(".json");
 		}
 
+		// check file before writing to it since JsonStore::flush() only logs errors - don't truncate
+		// an existing file here
+		QFile outputFile(fileName);
+		if (outputFile.open(QFile::WriteOnly | QFile::Append) == false)
+		{
+			QMessageBox::critical(this, tr("Save settings to file"),
+								  tr("Could not open the file %1 for writing: %2").arg(fileName, outputFile.errorString()));
+			return;
+		}
+		outputFile.close();
+
 		bool configChangedPrevious = m_configChanged;
 
 		// write current configuration to output file
@@ -202,6 +239,16 @@ void MainWindow::saveSettingsToFile()
 
 		m_configChanged = configChangedPrevious;
 		ui->buttonBox->setEnabled(m_configChanged);
+
+		// verify the written file to also report errors while writing (e.g. disk full)
+		QJsonParseError parseError{};
+		if (outputFile.open(QFile::ReadOnly) == false ||
+			QJsonDocument::fromJson(outputFile.readAll(), &parseError).isObject() == false ||
+			parseError.error != QJsonParseError::NoError)
+		{
+			QMessageBox::critical(this, tr("Save settings to file"),
+								  tr("Could not write the settings to the file %1.").arg(fileName));
+		}
 	}
 }
 
