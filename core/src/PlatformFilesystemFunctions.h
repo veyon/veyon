@@ -21,6 +21,9 @@ public:
 	virtual bool setFileOwnerGroup(const QString& filePath, const QString& ownerGroup) = 0;
 	virtual bool setFileOwnerGroupPermissions(const QString& filePath, QFile::Permissions permissions) = 0;
 
+	// opens the file through a native descriptor and refuses symlinks and non-regular files (on Linux also
+	// files of other users); QFile::fileName() is empty afterwards, so callers have to keep the path
+	// themselves and must not use fileName(), remove() or rename() on the QFile object
 	virtual bool openFileSafely(QFile* file, QFile::OpenMode openMode, QFile::Permissions permissions) = 0;
 
 	virtual PlatformCoreFunctions::ProcessId findFileLockingProcess(const QString& filePath) const = 0;

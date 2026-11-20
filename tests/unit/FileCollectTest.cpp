@@ -1,0 +1,124 @@
+// SPDX-FileCopyrightText: 2026 Tobias Junghans <tobydox@veyon.io>
+// SPDX-License-Identifier: GPL-2.0-or-later
+
+// FileCollect: handling of output files opened via openFileSafely()
+
+#include <QCoreApplication>
+#include <QFile>
+#include <QTemporaryDir>
+#include <QtTest>
+
+#include "FileCollection.h"
+#include "PlatformFilesystemFunctions.h"
+#include "VeyonCore.h"
+
+#include <memory>
+
+
+class FileCollectTest : public QObject
+{
+	Q_OBJECT
+private Q_SLOTS:
+	void initTestCase()
+	{
+		QVERIFY(m_home.isValid());
+		qputenv("HOME", m_home.path().toUtf8());
+		qputenv("XDG_CONFIG_HOME", m_home.filePath(QStringLiteral(".config")).toUtf8());
+
+		m_core = std::make_unique<VeyonCore>(QCoreApplication::instance(), VeyonCore::Component::CLI,
+											 QStringLiteral("FileCollectTest"));
+	}
+
+	void cleanupTestCase()
+	{
+		m_core.reset();
+	}
+
+	void discardRemovesFileOpenedSafely()
+	{
+		QTemporaryDir dir;
+		QVERIFY(dir.isValid());
+		const auto filePath = dir.filePath(QStringLiteral("partial.txt"));
+
+		FileCollection collection;
+		QVERIFY(openOutputFile(collection, filePath));
+		QCOMPARE(collection.currentOutputFile->write("partial"), 7);
+		QVERIFY(QFile::exists(filePath));
+
+		collection.discardCurrentOutputFile();
+
+		QVERIFY(collection.currentOutputFile == nullptr);
+		QVERIFY(collection.currentOutputFilePath.isEmpty());
+		QCOMPARE(collection.currentFileSize, 0);
+		QVERIFY(collection.currentTransferId.isNull());
+		QVERIFY(QFile::exists(filePath) == false);
+	}
+
+	void closeKeepsFile()
+	{
+		QTemporaryDir dir;
+		QVERIFY(dir.isValid());
+		const auto filePath = dir.filePath(QStringLiteral("complete.txt"));
+
+		FileCollection collection;
+		QVERIFY(openOutputFile(collection, filePath));
+		QCOMPARE(collection.currentOutputFile->write("complete"), 8);
+
+		collection.closeCurrentOutputFile();
+
+		QVERIFY(collection.currentOutputFile == nullptr);
+		QVERIFY(collection.currentOutputFilePath.isEmpty());
+		QFile file(filePath);
+		QVERIFY(file.open(QFile::ReadOnly));
+		QCOMPARE(file.readAll(), QByteArray("complete"));
+	}
+
+	void discardWithoutOpenedFileRemovesNothing()
+	{
+		QTemporaryDir dir;
+		QVERIFY(dir.isValid());
+		const auto filePath = dir.filePath(QStringLiteral("existing.txt"));
+		QFile existingFile(filePath);
+		QVERIFY(existingFile.open(QFile::WriteOnly));
+		existingFile.close();
+
+		// e.g. openFileSafely() refused the file: the path is not recorded, so the file is not removed
+		FileCollection collection;
+		collection.currentOutputFile = new QFile(filePath);
+		collection.discardCurrentOutputFile();
+
+		QVERIFY(collection.currentOutputFile == nullptr);
+		QVERIFY(QFile::exists(filePath));
+	}
+
+private:
+	static bool openOutputFile(FileCollection& collection, const QString& filePath)
+	{
+		collection.currentOutputFile = new QFile(filePath);
+		if (VeyonCore::platform().filesystemFunctions().openFileSafely(
+				collection.currentOutputFile, QFile::WriteOnly | QFile::Truncate,
+				QFile::ReadOwner | QFile::WriteOwner) == false)
+		{
+			return false;
+		}
+		collection.currentOutputFilePath = filePath;
+		collection.currentTransferId = QUuid::createUuid();
+		collection.currentFileSize = 100;
+		return true;
+	}
+
+	QTemporaryDir m_home;
+	std::unique_ptr<VeyonCore> m_core;
+};
+
+
+
+int main(int argc, char** argv)
+{
+	VeyonCore::setupApplicationParameters();
+	QCoreApplication application(argc, argv);
+	FileCollectTest test;
+	return QTest::qExec(&test, argc, argv);
+}
+
+#include "FileCollectTest.moc"

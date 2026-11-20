@@ -28,11 +28,37 @@ struct FileCollection
 
 	TransferId currentTransferId = {};
 	QFile* currentOutputFile = nullptr;
+	// QFile::fileName() is empty after opening a file via openFileSafely()
+	QString currentOutputFilePath = {};
 	qint64 currentFileSize = 0;
 
 	bool operator!=(const FileCollection& other) const
 	{
 		return other.id != id;
+	}
+
+	void closeCurrentOutputFile()
+	{
+		if (currentOutputFile)
+		{
+			currentOutputFile->close();
+			delete currentOutputFile;
+			currentOutputFile = nullptr;
+		}
+		currentOutputFilePath.clear();
+		currentFileSize = 0;
+		currentTransferId = TransferId{};
+	}
+
+	// closes and removes a partially received or rejected output file
+	void discardCurrentOutputFile()
+	{
+		const auto outputFilePath = currentOutputFilePath;
+		closeCurrentOutputFile();
+		if (outputFilePath.isEmpty() == false)
+		{
+			QFile::remove(outputFilePath);
+		}
 	}
 
 	int currentFileProgress() const
