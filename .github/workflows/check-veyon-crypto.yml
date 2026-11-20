@@ -13,25 +13,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-        with:
-          fetch-depth: 0
-      - name: VeyonCrypto OpenSSL version guards, QCA usage and core headers (06-pki.md §2)
-        env:
-          # pull requests: their base; pushes: the previous head (all zeros for new branches)
-          BASE: ${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || github.event.before }}
-        run: |
-          # rule 5 (no new QCA usage) checks the changes since the merge base with BASE, or with
-          # 4.12 if there is none (new branch, force push)
-          MERGE_BASE=
-          for candidate in "$BASE" origin/4.12 ; do
-            if [ -n "$candidate" ] && MERGE_BASE=$(git merge-base "$candidate" HEAD 2>/dev/null) ; then
-              break
-            fi
-            MERGE_BASE=
-          done
-          if [ -n "$MERGE_BASE" ] ; then
-            .ci/common/check-openssl-version-guards.sh "$MERGE_BASE"
-          else
-            echo "no merge base found, checking without rule 5"
-            .ci/common/check-openssl-version-guards.sh
-          fi
+      - name: VeyonCrypto OpenSSL version guards, public headers and core headers (06-pki.md §2)
+        run: .ci/common/check-openssl-version-guards.sh
