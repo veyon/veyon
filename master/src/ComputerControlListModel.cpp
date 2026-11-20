@@ -481,6 +481,11 @@ QString ComputerControlListModel::computerDisplayRole(const ComputerControlInter
 			return user;
 		}
 
+		if (displayRoleContent() == DisplayRoleContent::ComputerAndUserName)
+		{
+			return QStringLiteral("%1 - %2").arg(controlInterface->computerName(), user);
+		}
+
 		return QStringLiteral("%1 - %2").arg(user, controlInterface->computerName());
 	}
 
