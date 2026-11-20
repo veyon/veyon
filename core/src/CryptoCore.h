@@ -3,6 +3,12 @@
 
 #pragma once
 
+#ifdef __MINGW32__
+// QCA includes windows.h, which must not be included before winsock2.h (e.g. by rfb/rfbproto.h);
+// targets without the precompiled header (tests) rely on this order as well
+#include <winsock2.h>
+#endif
+
 #include <QtCrypto>
 
 #include "VeyonCore.h"
