@@ -4,6 +4,7 @@
 #pragma once
 
 #include <QDBusConnection>
+#include <QDBusMessage>
 #include <QDBusObjectPath>
 #include <QDBusPendingCall>
 #include <QElapsedTimer>
@@ -64,8 +65,14 @@ public:
 
 	/**
 	 * @brief Close and clean up the portal session.
+	 *
+	 * Keys and buttons still pressed are released first, waiting at most ReleaseOnCloseTimeout
+	 * for the replies.
 	 */
 	void close();
+
+	// how long close() waits at most for the replies to the releases of held keys and buttons
+	static constexpr int ReleaseOnCloseTimeout = 500;
 
 	State state() const { return m_state; }
 
@@ -158,6 +165,7 @@ private:
 
 	static constexpr int MaximumReleaseRetries = 1;
 
+	QDBusMessage inputMessage(HeldInput input, bool pressed) const;
 	QDBusPendingCall sendInput(HeldInput input, bool pressed);
 	void press(HeldInput input);
 	void release(HeldInput input, int retries);
