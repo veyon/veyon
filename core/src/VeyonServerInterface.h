@@ -28,4 +28,10 @@ public:
 	virtual int vncServerBasePort() const = 0;
 
 	virtual void setMinimumFramebufferUpdateInterval(const MessageContext& context, int interval) = 0;
+
+	virtual int activeClientCount() const = 0;
+
+Q_SIGNALS:
+	void clientConnected();
+	void clientDisconnected();
 };

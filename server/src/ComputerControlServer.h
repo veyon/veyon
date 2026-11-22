@@ -59,6 +59,8 @@ public:
 
 	void setMinimumFramebufferUpdateInterval(const MessageContext& context, int interval) override;
 
+	int activeClientCount() const override;
+
 private:
 	void checkForIncompleteAuthentication(VncServerClient* client);
 	void showAuthenticationMessage(VncServerClient* client);

@@ -243,7 +243,21 @@ void VeyonMaster::stopAllFeatures(const ComputerControlInterfaceList& computerCo
 
 void VeyonMaster::shutdown()
 {
-	stopAllFeatures(m_computerControlListModel->computerControlInterfaces());
+	const auto features = allFeatures();
+
+	for (const auto& feature : features)
+	{
+		if (VeyonCore::config().keepScreenLockOnMasterClose() &&
+			(feature.name() == QLatin1String("ScreenLock") ||
+			 feature.name() == QLatin1String("InputDevicesLock") ||
+			 feature.uid() == Feature::Uid("ccb535a2-1d24-4cc1-a709-8b47d2b2ac79") ||
+			 feature.uid() == Feature::Uid("e4a77879-e544-4fec-bc18-e534f33b934c")))
+		{
+			continue;
+		}
+
+		VeyonCore::featureManager().stopFeature(*this, feature, m_computerControlListModel->computerControlInterfaces());
+	}
 
 	const auto allMessageQueuesEmpty = [&]() {
 		for (const auto& computerControlInterface : m_computerControlListModel->computerControlInterfaces())

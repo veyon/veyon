@@ -3,9 +3,12 @@
 
 #pragma once
 
+#include <QTimer>
+
 #include "FeatureProviderInterface.h"
 
 class LockWidget;
+class VeyonServerInterface;
 
 class ScreenLockFeaturePlugin : public QObject, FeatureProviderInterface, PluginInterface
 {
@@ -60,7 +63,15 @@ public:
 
 	bool handleFeatureMessage(VeyonWorkerInterface& worker, const FeatureMessage& message) override;
 
+private Q_SLOTS:
+	void handleClientConnected();
+	void handleClientDisconnected();
+	void handleTimeout();
+
 private:
+	void setServer(VeyonServerInterface& server);
+	bool isScreenLockActive() const;
+
 	enum class FeatureCommand {
 		StartLock,
 		StopLock
@@ -71,4 +82,8 @@ private:
 	const FeatureList m_features;
 
 	LockWidget* m_lockWidget;
+
+	VeyonServerInterface* m_server{nullptr};
+	QTimer m_timeoutTimer;
+	int m_customTimeoutMinutes{0};
 };

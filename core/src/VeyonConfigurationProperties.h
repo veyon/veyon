@@ -46,6 +46,7 @@
 	OP(VeyonConfiguration, VeyonCore::config(), bool, isTrayIconHidden, setTrayIconHidden, "HideTrayIcon", "Service", false, Configuration::Property::Flag::Advanced) \
 	OP(VeyonConfiguration, VeyonCore::config(), bool, failedAuthenticationNotificationsEnabled, setFailedAuthenticationNotificationsEnabled, "FailedAuthenticationNotifications", "Service", true, Configuration::Property::Flag::Standard) \
 	OP(VeyonConfiguration, VeyonCore::config(), bool, remoteConnectionNotificationsEnabled, setRemoteConnectionNotificationsEnabled, "RemoteConnectionNotifications", "Service", false, Configuration::Property::Flag::Standard) \
+	OP(VeyonConfiguration, VeyonCore::config(), int, screenLockTimeout, setScreenLockTimeout, "ScreenLockTimeout", "Service", 0, Configuration::Property::Flag::Standard) \
 	OP(VeyonConfiguration, VeyonCore::config(), bool, activeSessionModeEnabled, setActiveSessionModeEnabled, "ActiveSession", "Service", false, Configuration::Property::Flag::Standard) \
 	OP(VeyonConfiguration, VeyonCore::config(), bool, multiSessionModeEnabled, setMultiSessionModeEnabled, "MultiSession", "Service", false, Configuration::Property::Flag::Standard) \
 	OP(VeyonConfiguration, VeyonCore::config(), int, maximumSessionCount, setMaximumSessionCount, "MaximumSessionCount", "Service", 100, Configuration::Property::Flag::Standard) \
@@ -118,6 +119,7 @@
 	OP(VeyonConfiguration, VeyonCore::config(), bool, hideComputerFilter, setHideComputerFilter, "HideComputerFilter", "Master", false, Configuration::Property::Flag::Standard) \
 	OP(VeyonConfiguration, VeyonCore::config(), QUuid, computerDoubleClickFeature, setComputerDoubleClickFeature, "ComputerDoubleClickFeature", "Master", QUuid(QStringLiteral("a18e545b-1321-4d4e-ac34-adc421c6e9c8")), Configuration::Property::Flag::Standard) \
 	OP(VeyonConfiguration, VeyonCore::config(), bool, enforceSelectedModeForClients, setEnforceSelectedModeForClients, "EnforceSelectedModeForClients", "Master", false, Configuration::Property::Flag::Standard) \
+	OP(VeyonConfiguration, VeyonCore::config(), bool, keepScreenLockOnMasterClose, setKeepScreenLockOnMasterClose, "KeepScreenLockOnMasterClose", "Master", false, Configuration::Property::Flag::Standard) \
 	OP(VeyonConfiguration, VeyonCore::config(), bool, autoOpenComputerSelectPanel, setAutoOpenComputerSelectPanel, "AutoOpenComputerSelectPanel", "Master", false, Configuration::Property::Flag::Standard) \
 	OP(VeyonConfiguration, VeyonCore::config(), bool, confirmUnsafeActions, setConfirmUnsafeActions, "ConfirmUnsafeActions", "Master", false, Configuration::Property::Flag::Standard) \
 	OP(VeyonConfiguration, VeyonCore::config(), bool, showFeatureWindowsOnSameScreen, setShowFeatureWindowsOnSameScreen, "ShowFeatureWindowsOnSameScreen", "Master", false, Configuration::Property::Flag::Standard) \

@@ -43,7 +43,11 @@ ComputerControlServer::ComputerControlServer(QObject* parent) :
 
 	connect(&m_vncProxyServer, &VncProxyServer::connectionSynchronized,
 			this, &ComputerControlServer::sendAsyncFeatureMessages, Qt::DirectConnection);
+	connect(&m_vncProxyServer, &VncProxyServer::connectionSynchronized,
+			this, [this]() { Q_EMIT clientConnected(); });
 	connect(&m_vncProxyServer, &VncProxyServer::connectionClosed, this, &ComputerControlServer::updateTrayIconToolTip);
+	connect(&m_vncProxyServer, &VncProxyServer::connectionClosed,
+			this, [this]() { Q_EMIT clientDisconnected(); });
 }
 
 
@@ -140,6 +144,13 @@ void ComputerControlServer::setMinimumFramebufferUpdateInterval(const MessageCon
 	{
 		client->setMinimumFramebufferUpdateInterval(interval);
 	}
+}
+
+
+
+int ComputerControlServer::activeClientCount() const
+{
+	return m_vncProxyServer.clients().size();
 }
 
 
