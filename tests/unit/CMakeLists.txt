@@ -385,4 +385,21 @@ if(WITH_TESTS AND VEYON_BUILD_LINUX)
 	)
 	add_test(NAME PluginLoadingTest COMMAND PluginLoadingTest)
 
+	#
+	# AuthenticationLimiterTest: backoff and concurrency limits of the service's D-Bus method Authenticate
+	#
+	add_executable(AuthenticationLimiterTest
+		AuthenticationLimiterTest.cpp
+		${CMAKE_SOURCE_DIR}/plugins/platform/linux/AuthenticationLimiter.cpp
+	)
+
+	target_include_directories(AuthenticationLimiterTest PRIVATE ${CMAKE_SOURCE_DIR}/plugins/platform/linux)
+
+	target_link_libraries(AuthenticationLimiterTest PRIVATE
+		Qt${QT_MAJOR_VERSION}::Test
+		Qt${QT_MAJOR_VERSION}::Core
+	)
+
+	add_test(NAME AuthenticationLimiterTest COMMAND AuthenticationLimiterTest)
+
 endif()
