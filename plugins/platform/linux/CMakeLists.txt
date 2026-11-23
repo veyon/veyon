@@ -22,6 +22,8 @@ build_veyon_plugin(linux-platform
 	LinuxPlatformConfigurationPage.ui
 	LinuxFilesystemFunctions.cpp
 	LinuxInputDeviceFunctions.cpp
+	AuthenticationLimiter.cpp
+	AuthenticationLimiter.h
 	InputBlockHelper.cpp
 	InputBlockHelper.h
 	LinuxNetworkFunctions.cpp

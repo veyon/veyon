@@ -13,6 +13,7 @@
 #include <QStringList>
 #include <QVariant>
 
+#include "AuthenticationLimiter.h"
 #include "LinuxDBusInterfaces.h"
 #include "LinuxServiceBusInterface.h"
 #include "VeyonCore.h"
@@ -22,9 +23,14 @@
 
 LinuxServiceBusInterface::LinuxServiceBusInterface(SessionUserCheck sessionUserCheck, QObject* parent) :
 	QObject(parent),
-	m_sessionUserCheck(std::move(sessionUserCheck))
+	m_sessionUserCheck(std::move(sessionUserCheck)),
+	m_limiter(AuthenticationLimiter::create())
 {
 }
+
+
+
+LinuxServiceBusInterface::~LinuxServiceBusInterface() = default;
 
 
 
@@ -57,8 +63,33 @@ bool LinuxServiceBusInterface::registerOnSystemBus()
 
 bool LinuxServiceBusInterface::Authenticate(const QString& username, const QByteArray& password)
 {
-	if (verifyCaller() == false)
+	uid_t callerUid = 0;
+	if (verifyCaller(&callerUid) == false)
 	{
+		return false;
+	}
+
+	if (AuthenticationLimiter::isValidRequest(username, password.constData(), password.size()) == false)
+	{
+		vWarning() << "rejecting invalid authentication request from uid" << callerUid;
+		return false;
+	}
+
+	// The request is only admitted if the caller has no other request outstanding, is not backing
+	// off after failed checks and the service is not overloaded. This limits the guessing of
+	// passwords via this method to a few attempts per minute and caller.
+	const auto callerKey = QStringLiteral("uid:%1").arg(callerUid);
+	auto rejection = AuthenticationLimiter::Rejection::Admitted;
+	auto permit = m_limiter->admit(callerKey, username, &rejection);
+	if (permit == nullptr)
+	{
+		int suppressedCount = 0;
+		if (m_limiter->shouldLogRejection(callerKey, &suppressedCount))
+		{
+			vWarning() << "rejecting authentication request from uid" << callerUid
+					   << "-" << AuthenticationLimiter::rejectionName(rejection)
+					   << "(" << suppressedCount << "similar rejections not logged)";
+		}
 		return false;
 	}
 
@@ -77,17 +108,20 @@ bool LinuxServiceBusInterface::Authenticate(const QString& username, const QByte
 												  username, password);
 	auto* watcher = new QDBusPendingCallWatcher(pendingCall, this);
 	connect(watcher, &QDBusPendingCallWatcher::finished, this,
-			[callMessage, watcher](QDBusPendingCallWatcher*) {
+			[callMessage, watcher, permit](QDBusPendingCallWatcher*) {
 		const QDBusPendingReply<bool> reply = *watcher;
 
 		bool authenticated = false;
 		if (reply.isValid())
 		{
 			authenticated = reply.value();
+			permit->finish(authenticated);
 		}
 		else
 		{
 			vCritical() << "authentication helper call failed:" << reply.error().message();
+			// no verdict: neither a failure nor a success
+			permit->finishWithoutResult();
 		}
 
 		if (QDBusConnection::systemBus().send(callMessage.createReply(QVariant::fromValue(authenticated))) == false)
@@ -103,7 +137,7 @@ bool LinuxServiceBusInterface::Authenticate(const QString& username, const QByte
 
 
 
-bool LinuxServiceBusInterface::verifyCaller() const
+bool LinuxServiceBusInterface::verifyCaller(uid_t* callerUid) const
 {
 	const auto sender = message().service();
 	if (sender.isEmpty())
@@ -122,6 +156,7 @@ bool LinuxServiceBusInterface::verifyCaller() const
 	}
 
 	const auto uid = uidReply.value();
+	*callerUid = uid;
 	if (uid != 0 && m_sessionUserCheck(uid) == false)
 	{
 		vCritical() << "rejecting authentication request from uid" << uid

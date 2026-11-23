@@ -7,9 +7,12 @@
 #include <QObject>
 
 #include <functional>
+#include <memory>
 #include <sys/types.h>
 
 // clazy:excludeall=copyable-polymorphic
+
+class AuthenticationLimiter;
 
 class LinuxServiceBusInterface : public QObject, protected QDBusContext
 {
@@ -19,6 +22,7 @@ public:
 	using SessionUserCheck = std::function<bool(uid_t)>;
 
 	explicit LinuxServiceBusInterface(SessionUserCheck sessionUserCheck, QObject* parent = nullptr);
+	~LinuxServiceBusInterface() override;
 
 	bool registerOnSystemBus();
 
@@ -26,9 +30,10 @@ public Q_SLOTS:
 	bool Authenticate(const QString& username, const QByteArray& password);
 
 private:
-	bool verifyCaller() const;
+	bool verifyCaller(uid_t* uid) const;
 
 	static constexpr auto AuthenticateTimeout = 10000;
 
 	SessionUserCheck m_sessionUserCheck;
+	std::shared_ptr<AuthenticationLimiter> m_limiter;
 };
