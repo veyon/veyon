@@ -336,6 +336,14 @@ void PluginManager::loadPlugins(const QString& nameFilter)
 		}
 		else
 		{
+			// loadPluginInstance() calls QPluginLoader::load() explicitly, which takes an unload reference
+			// even if the library has been loaded by another QPluginLoader already (e.g. platform plugins
+			// are loaded by both loadPlatformPlugins() and loadPlugins()). Deleting a QPluginLoader does not
+			// release this reference, so balance it here. Otherwise the plugin instance is not deleted in
+			// ~PluginManager() but only by QtCore's library cleanup at process exit, i.e. after the
+			// application object has been destroyed, which crashes in plugins owning GUI objects such as
+			// the dummy QWindow of the Windows platform plugin.
+			pluginLoader->unload();
 			delete pluginLoader;
 		}
 	}
