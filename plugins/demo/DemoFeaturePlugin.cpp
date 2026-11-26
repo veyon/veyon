@@ -570,7 +570,10 @@ QRect DemoFeaturePlugin::viewportFromScreenSelection() const
 	const auto screen = m_screens.value(m_screenSelection - 1);
 	if (screen)
 	{
-		return screen->geometry().translated(-minimumScreenPosition);
+		// QScreen::geometry() keeps the native position of the screen but scales its size by the
+		// screen's scale factor, while the demo framebuffer always has native pixels
+		const auto geometry = screen->geometry();
+		return QRect{geometry.topLeft(), geometry.size() * screen->devicePixelRatio()}.translated(-minimumScreenPosition);
 	}
 
 	return {};
