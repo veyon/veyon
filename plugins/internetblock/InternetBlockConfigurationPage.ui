@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>InternetBlockConfigurationPage</class>
+ <widget class="QWidget" name="InternetBlockConfigurationPage">
+  <property name="windowTitle">
+   <string>Internet blocking</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="internetblock.qrc">
+    <normaloff>:/internetblock/internet-block.png</normaloff>:/internetblock/internet-block.png</iconset>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
+   <item>
+    <widget class="QGroupBox" name="groupBox">
+     <property name="title">
+      <string>Networks reachable while internet access is blocked</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_2">
+      <item>
+       <widget class="QCheckBox" name="allowPrivateNetworks">
+        <property name="text">
+         <string>Allow local networks (10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16, link-local, multicast)</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="allowMasterComputer">
+        <property name="text">
+         <string>Always allow the computer which blocked internet access</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string>Additional allowed IPv4 addresses and networks (CIDR notation, separated by commas), e.g. school web servers or a web proxy:</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="allowedNetworks">
+        <property name="placeholderText">
+         <string notr="true">203.0.113.10, 198.51.100.0/24</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="allowedNetworksStatus">
+        <property name="styleSheet">
+         <string notr="true">color: #c0392b;</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_2">
+        <property name="text">
+         <string>Note: allowed addresses must be IP addresses, not host names. Websites behind content delivery networks usually change their addresses, so allowing single websites is not reliable – use a web proxy in the allowed networks instead.</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="groupBox_2">
+     <property name="title">
+      <string>Advanced</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_3">
+      <item>
+       <widget class="QCheckBox" name="blockIPv6">
+        <property name="text">
+         <string>Also block internet access via IPv6</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="unblockOnServiceStart">
+        <property name="text">
+         <string>Restore internet access when the Veyon Service starts (e.g. after a reboot)</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <spacer name="verticalSpacer">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="internetblock.qrc"/>
+ </resources>
+ <connections/>
+</ui>
