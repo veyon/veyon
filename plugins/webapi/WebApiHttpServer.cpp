@@ -379,7 +379,8 @@ bool WebApiHttpServer::setupTls()
 #if QT_VERSION >= QT_VERSION_CHECK(6, 8, 0)
 	auto sslConfig = QSslConfiguration::defaultConfiguration();
 	sslConfig.setLocalCertificate(certificate);
-	sslConfig.setPrivateKey(QSslKey(&privateKeyFile, QSsl::Rsa));
+	sslConfig.setPrivateKey(privateKey);
+	sslConfig.setProtocol(QSsl::TlsV1_3OrLater);
 
 	auto sslServer = new QSslServer(this);
 	sslServer->setSslConfiguration(sslConfig);
