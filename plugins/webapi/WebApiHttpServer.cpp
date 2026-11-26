@@ -12,6 +12,12 @@
 #include <QSslServer>
 #endif
 
+#include <openssl/err.h>
+#include <openssl/pem.h>
+#include <openssl/x509.h>
+
+#include <memory>
+
 #include "Filesystem.h"
 #include "HostAddress.h"
 #include "ProcessHelper.h"
@@ -320,6 +326,37 @@ bool WebApiHttpServer::start()
 
 
 
+static bool privateKeyMatchesCertificate(const QSslKey& privateKey, const QSslCertificate& certificate)
+{
+	const auto keyPem = privateKey.toPem();
+	const auto certPem = certificate.toPem();
+
+	const std::unique_ptr<BIO, decltype(&BIO_free)> keyBio(BIO_new_mem_buf(keyPem.constData(), int(keyPem.size())),
+														   &BIO_free);
+	const std::unique_ptr<BIO, decltype(&BIO_free)> certBio(BIO_new_mem_buf(certPem.constData(), int(certPem.size())),
+															&BIO_free);
+	if (keyBio == nullptr || certBio == nullptr)
+	{
+		return false;
+	}
+
+	// never prompt for a passphrase
+	const auto noPassphrase = [](char*, int, int, void*) { return 0; };
+
+	const std::unique_ptr<EVP_PKEY, decltype(&EVP_PKEY_free)> key(
+		PEM_read_bio_PrivateKey(keyBio.get(), nullptr, noPassphrase, nullptr), &EVP_PKEY_free);
+	const std::unique_ptr<X509, decltype(&X509_free)> cert(
+		PEM_read_bio_X509(certBio.get(), nullptr, noPassphrase, nullptr), &X509_free);
+
+	const auto matches = key && cert && X509_check_private_key(cert.get(), key.get()) == 1;
+
+	ERR_clear_error();
+
+	return matches;
+}
+
+
+
 bool WebApiHttpServer::setupTls()
 {
 	QFile certFile(VeyonCore::filesystem().expandPath(m_configuration.tlsCertificateFile()));
@@ -374,6 +411,13 @@ bool WebApiHttpServer::setupTls()
 	if (privateKey.isNull())
 	{
 		vCritical() << privateKeyFile.fileName() << "contains an invalid or unsupported TLS private key";
+		return false;
+	}
+
+	if (privateKeyMatchesCertificate(privateKey, certificateChain.first()) == false)
+	{
+		vCritical() << "TLS private key" << privateKeyFile.fileName() << "does not match certificate"
+					<< certFile.fileName();
 		return false;
 	}
 
