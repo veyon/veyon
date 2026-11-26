@@ -201,7 +201,8 @@ ${If} $R1 != ""
   ClearErrors
   ExecWait '"$INSTDIR\veyon-wcli.exe" config import "$R1"' $0
   ${If} $0 != 0
-	   MessageBox MB_OK|MB_ICONSTOP "Could not apply specified configuration file!"
+	   MessageBox MB_OK|MB_ICONSTOP "Could not apply specified configuration file!" /SD IDOK
+	   SetErrorLevel 1
   ${EndIf}
 ${EndIf}
 ExecWait '"$INSTDIR\veyon-wcli.exe" service start'
@@ -247,7 +248,7 @@ ${EndIf}
 UserInfo::GetAccountType
 pop $0
 ${If} $0 != "admin"
-	MessageBox mb_iconstop "Please run the installer with administrative rights!"
+	MessageBox mb_iconstop "Please run the installer with administrative rights!" /SD IDOK
 	SetErrorLevel 740 ;ERROR_ELEVATION_REQUIRED
 	Quit
 ${EndIf}
