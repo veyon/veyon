@@ -723,6 +723,16 @@
             </property>
            </widget>
           </item>
+          <item row="4" column="0" colspan="2">
+           <widget class="QCheckBox" name="keepScreenLockOnMasterClose">
+            <property name="toolTip">
+             <string>Do not automatically unlock client computers when closing Veyon Master.</string>
+            </property>
+            <property name="text">
+             <string>Keep ScreenLock after closing Veyon Master</string>
+            </property>
+           </widget>
+          </item>
          </layout>
         </widget>
        </item>
@@ -859,6 +869,7 @@
   <tabstop>hideComputerFilter</tabstop>
   <tabstop>expandLocations</tabstop>
   <tabstop>enforceSelectedModeForClients</tabstop>
+  <tabstop>keepScreenLockOnMasterClose</tabstop>
   <tabstop>confirmUnsafeActions</tabstop>
   <tabstop>showFeatureWindowsOnSameScreen</tabstop>
   <tabstop>computerDoubleClickFeature</tabstop>

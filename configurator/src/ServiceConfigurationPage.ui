@@ -32,6 +32,32 @@
         </property>
        </widget>
       </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="screenLockTimeoutLabel">
+        <property name="text">
+         <string>Screen lock timeout when disconnected:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="QSpinBox" name="screenLockTimeout">
+        <property name="toolTip">
+         <string>Time in minutes after which the screen will automatically unlock if connection to Veyon Master is lost or closed (0 = disabled)</string>
+        </property>
+        <property name="specialValueText">
+         <string>Disabled</string>
+        </property>
+        <property name="suffix">
+         <string> min</string>
+        </property>
+        <property name="minimum">
+         <number>0</number>
+        </property>
+        <property name="maximum">
+         <number>1440</number>
+        </property>
+       </widget>
+      </item>
       <item row="4" column="0">
        <widget class="QLabel" name="serverConnectionLimitLabel">
         <property name="text">
@@ -436,6 +462,7 @@ Example: [^-]*-(PC[0-9]*)</string>
   <tabstop>isTrayIconHidden</tabstop>
   <tabstop>failedAuthenticationNotificationsEnabled</tabstop>
   <tabstop>remoteConnectionNotificationsEnabled</tabstop>
+  <tabstop>screenLockTimeout</tabstop>
   <tabstop>autostartService</tabstop>
   <tabstop>startService</tabstop>
   <tabstop>stopService</tabstop>
