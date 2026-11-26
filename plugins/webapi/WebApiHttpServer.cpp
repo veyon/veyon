@@ -336,8 +336,9 @@ bool WebApiHttpServer::setupTls()
 		return false;
 	}
 
-	QSslCertificate certificate(certFile.readAll());
-	if (certificate.isNull())
+	// the file may contain the server certificate followed by intermediate certificates
+	const auto certificateChain = QSslCertificate::fromData(certFile.readAll(), QSsl::Pem);
+	if (certificateChain.isEmpty() || certificateChain.first().isNull())
 	{
 		vCritical() << certFile.fileName() << "does not contain a valid TLS certificate";
 		return false;
@@ -376,18 +377,18 @@ bool WebApiHttpServer::setupTls()
 		return false;
 	}
 
-#if QT_VERSION >= QT_VERSION_CHECK(6, 8, 0)
 	auto sslConfig = QSslConfiguration::defaultConfiguration();
-	sslConfig.setLocalCertificate(certificate);
+	sslConfig.setLocalCertificateChain(certificateChain);
 	sslConfig.setPrivateKey(privateKey);
 	sslConfig.setProtocol(QSsl::TlsV1_3OrLater);
 
+#if QT_VERSION >= QT_VERSION_CHECK(6, 8, 0)
 	auto sslServer = new QSslServer(this);
 	sslServer->setSslConfiguration(sslConfig);
 
 	m_tcpServer = sslServer;
 #else
-	m_server->sslSetup(certificate, privateKey, QSsl::TlsV1_3OrLater);
+	m_server->sslSetup(sslConfig);
 #endif
 
 	return true;
