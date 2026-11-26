@@ -1,12 +1,15 @@
 // SPDX-FileCopyrightText: 2017-2026 Tobias Junghans <tobydox@veyon.io>
 // SPDX-License-Identifier: GPL-2.0-or-later
 
+#include <array>
+
 #include <dsgetdc.h>
 #include <wtsapi32.h>
 
 #include <QBuffer>
 
 #include "DesktopInputController.h"
+#include "LogonKeySequence.h"
 #include "VeyonConfiguration.h"
 #include "WindowsCoreFunctions.h"
 #include "WindowsInputDeviceFunctions.h"
@@ -17,6 +20,7 @@
 #include "authSSP.h"
 
 #define XK_MISCELLANY
+#define XK_LATIN1
 
 #include "keysymdef.h"
 
@@ -184,9 +188,96 @@ bool WindowsUserFunctions::prepareLogon(const QString& username, const Password&
 
 
 
+// reads a value of the Windows sign-in screen (LogonUI) state - read-only, nothing is changed
+static QVariant readLogonRegistryValue(const wchar_t* keyPath, const wchar_t* valueName)
+{
+	HKEY key = nullptr;
+	if (RegOpenKeyExW(HKEY_LOCAL_MACHINE, keyPath, 0, KEY_READ | KEY_WOW64_64KEY, &key) != ERROR_SUCCESS)
+	{
+		return {};
+	}
+
+	std::array<wchar_t, 512> buffer{};
+	DWORD size = sizeof(buffer) - sizeof(wchar_t);
+	DWORD type = 0;
+	QVariant result;
+
+	if (RegQueryValueExW(key, valueName, nullptr, &type, reinterpret_cast<LPBYTE>(buffer.data()), &size) == ERROR_SUCCESS)
+	{
+		if (type == REG_DWORD && size == sizeof(DWORD))
+		{
+			result = quint32(*reinterpret_cast<const DWORD*>(buffer.data()));
+		}
+		else if (type == REG_SZ || type == REG_EXPAND_SZ)
+		{
+			result = QString::fromWCharArray(buffer.data());
+		}
+	}
+
+	RegCloseKey(key);
+
+	return result;
+}
+
+
+
+// strips domain prefixes like "DOMAIN\", ".\" and UPN suffixes for comparing account names
+static QString plainAccountName(const QString& name)
+{
+	auto plain = name.trimmed();
+	if (const auto pos = plain.lastIndexOf(QLatin1Char('\\')); pos >= 0)
+	{
+		plain = plain.mid(pos + 1);
+	}
+	if (const auto pos = plain.indexOf(QLatin1Char('@')); pos >= 0)
+	{
+		plain = plain.left(pos);
+	}
+	return plain.toLower();
+}
+
+
+
 bool WindowsUserFunctions::performLogon(const QString& username, const Password& password)
 {
 	WindowsPlatformConfiguration config(&VeyonCore::config());
+
+	LogonKeySequence::Steps switchUserSteps;
+	QString keySequenceError;
+	if (LogonKeySequence::parse(config.logonSwitchUserKeySequence(), &switchUserSteps, &keySequenceError) == false)
+	{
+		vWarning() << "ignoring invalid key sequence for switching user:" << keySequenceError;
+		switchUserSteps.clear();
+	}
+
+	// Determine what the sign-in screen of Windows 10/11 shows. Unless the policy
+	// "Interactive logon: Don't display last signed-in" is set, it shows the tile of
+	// the last signed-in user with a password field only.
+	const auto dontDisplayLastUserName = readLogonRegistryValue(
+		L"SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies\\System", L"DontDisplayLastUserName").toUInt() == 1;
+	const auto lastUser = readLogonRegistryValue(
+		L"SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Authentication\\LogonUI", L"LastLoggedOnSAMUser").toString();
+
+	enum class LogonMode {
+		UserNameAndPassword,	// sign-in screen asks for user name and password
+		PasswordOnly,			// tile of the requested user is already selected
+		SwitchUser				// switch from last user's tile to "Other user" first
+	};
+
+	auto mode = LogonMode::UserNameAndPassword;
+	if (dontDisplayLastUserName == false && lastUser.isEmpty() == false)
+	{
+		if (plainAccountName(lastUser) == plainAccountName(username))
+		{
+			mode = LogonMode::PasswordOnly;
+		}
+		else if (switchUserSteps.isEmpty() == false)
+		{
+			mode = LogonMode::SwitchUser;
+		}
+	}
+
+	vDebug() << "last signed-in user:" << lastUser << "mode:" << int(mode);
 
 	DesktopInputController input(config.logonKeyPressInterval());
 
@@ -205,27 +296,77 @@ bool WindowsUserFunctions::performLogon(const QString& username, const Password&
 		}
 	};
 
+	const auto sendKeyCombination = [&input](const QList<DesktopInputController::KeyCode>& modifiers,
+											 DesktopInputController::KeyCode key) {
+		for (const auto modifier : modifiers)
+		{
+			input.pressKey(modifier);
+		}
+		input.pressAndReleaseKey(key);
+		for (auto it = modifiers.crbegin(); it != modifiers.crend(); ++it)
+		{
+			input.releaseKey(*it);
+		}
+	};
+
+	const auto wait = [&input](int milliseconds) {
+		// key events are sent asynchronously, so wait for pending ones first
+		input.waitForAllKeysSent();
+		QThread::msleep(static_cast<unsigned long>(milliseconds));
+	};
+
+	// select all text of the focused field and remove it - fields may be
+	// pre-filled and the caret is not always placed such that a single
+	// Delete clears the field
+	const auto clearField = [&]() {
+		sendKeyCombination({XK_Control_L}, XK_a);
+		input.pressAndReleaseKey(XK_Delete);
+	};
+
 	WindowsInputDeviceFunctions::stopOnScreenKeyboard();
 
 	ctrlAltDel();
 
-	QThread::msleep(static_cast<unsigned long>(config.logonInputStartDelay()));
+	wait(config.logonInputStartDelay());
 
 	if (config.logonConfirmLegalNotice())
 	{
 		input.pressAndReleaseKey(XK_Return);
-		QThread::msleep(static_cast<unsigned long>(config.logonInputStartDelay()));
+		wait(config.logonInputStartDelay());
 	}
 
-	input.pressAndReleaseKey(XK_Delete);
+	if (mode == LogonMode::SwitchUser)
+	{
+		for (const auto& step : std::as_const(switchUserSteps))
+		{
+			if (step.delay > 0)
+			{
+				wait(step.delay);
+			}
+			else
+			{
+				sendKeyCombination(step.modifiers, step.key);
+			}
+		}
 
-	sendString(username);
+		// give the sign-in screen time to show the user name and password fields
+		wait(config.logonInputStartDelay());
+	}
 
-	input.pressAndReleaseKey(XK_Tab);
+	if (mode != LogonMode::PasswordOnly)
+	{
+		clearField();
+		sendString(username);
 
+		input.pressAndReleaseKey(XK_Tab);
+	}
+
+	clearField();
 	sendString(QString::fromUtf8(password.toByteArray()));
 
 	input.pressAndReleaseKey(XK_Return);
+
+	input.waitForAllKeysSent();
 
 	return true;
 }

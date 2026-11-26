@@ -24,6 +24,8 @@ build_veyon_plugin(windows-platform
 	WindowsUserFunctions.cpp
 	WtsSessionManager.cpp
 	DesktopInputController.cpp
+	LogonKeySequence.cpp
+	LogonKeySequence.h
 	SasEventListener.cpp
 	XEventLog.cpp
 	${ultravnc_DIR}/winvnc/winvnc/vnckeymap.cpp

@@ -385,4 +385,16 @@ if(WITH_TESTS AND VEYON_BUILD_LINUX)
 	)
 	add_test(NAME PluginLoadingTest COMMAND PluginLoadingTest)
 
+	#
+	# LogonKeySequenceTest: tests parsing of the configurable key sequence sent
+	# to the Windows sign-in screen (platform independent code)
+	#
+	add_executable(LogonKeySequenceTest
+		LogonKeySequenceTest.cpp
+		${CMAKE_SOURCE_DIR}/plugins/platform/windows/LogonKeySequence.cpp
+	)
+	target_include_directories(LogonKeySequenceTest PRIVATE ${CMAKE_SOURCE_DIR}/plugins/platform/windows)
+	target_link_libraries(LogonKeySequenceTest PRIVATE Qt${QT_MAJOR_VERSION}::Test Qt${QT_MAJOR_VERSION}::Core)
+	add_test(NAME LogonKeySequenceTest COMMAND LogonKeySequenceTest)
+
 endif()

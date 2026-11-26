@@ -20,6 +20,7 @@
 	OP(WindowsPlatformConfiguration, m_configuration, bool, disableMouseDevicesForScreenLock, setDisableMouseDevicesForScreenLock, "DisableMouseDevicesForScreenLock", "Windows", false, Configuration::Property::Flag::Advanced) \
 	OP(WindowsPlatformConfiguration, m_configuration, int, logonInputStartDelay, setLogonInputStartDelay, "LogonInputStartDelay", "Windows", 1000, Configuration::Property::Flag::Advanced) \
 	OP(WindowsPlatformConfiguration, m_configuration, int, logonKeyPressInterval, setLogonKeyPressInterval, "LogonKeyPressInterval", "Windows", 10, Configuration::Property::Flag::Advanced) \
-	OP(WindowsPlatformConfiguration, m_configuration, bool, logonConfirmLegalNotice, setLogonConfirmLegalNotice, "LogonConfirmLegalNotice", "Windows", false, Configuration::Property::Flag::Advanced)
+	OP(WindowsPlatformConfiguration, m_configuration, bool, logonConfirmLegalNotice, setLogonConfirmLegalNotice, "LogonConfirmLegalNotice", "Windows", false, Configuration::Property::Flag::Advanced) \
+	OP(WindowsPlatformConfiguration, m_configuration, QString, logonSwitchUserKeySequence, setLogonSwitchUserKeySequence, "LogonSwitchUserKeySequence", "Windows", QStringLiteral("Shift+Tab End Return"), Configuration::Property::Flag::Advanced)
 
 DECLARE_CONFIG_PROXY(WindowsPlatformConfiguration, FOREACH_WINDOWS_PLATFORM_CONFIG_PROPERTY)

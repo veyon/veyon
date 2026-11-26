@@ -5,6 +5,9 @@
 
 #include <windows.h>
 
+#include <QElapsedTimer>
+#include <QThread>
+
 #include "DesktopInputController.h"
 #include "VeyonCore.h"
 
@@ -81,6 +84,34 @@ void DesktopInputController::pressAndReleaseKey(QLatin1Char character)
 
 
 
+bool DesktopInputController::waitForAllKeysSent(int timeout)
+{
+	QElapsedTimer timer;
+	timer.start();
+
+	// the input thread holds m_dataMutex while sending queued key events,
+	// so an empty queue observed under the lock means all keys were sent
+	while (timer.elapsed() < timeout)
+	{
+		m_dataMutex.lock();
+		const auto empty = m_keys.isEmpty();
+		m_dataMutex.unlock();
+
+		if (empty)
+		{
+			return true;
+		}
+
+		m_inputWaitCondition.wakeAll();
+		QThread::msleep(5);
+	}
+
+	vWarning() << "timeout while waiting for key events to be sent";
+	return false;
+}
+
+
+
 void DesktopInputController::run()
 {
 	auto desktop = OpenInputDesktop(0, false, GENERIC_WRITE);
@@ -97,12 +128,8 @@ void DesktopInputController::run()
 
 		QMutex waitMutex;
 
-		while (m_requestStop == 0)
+		while (true)
 		{
-			waitMutex.lock();
-			m_inputWaitCondition.wait(&waitMutex, ThreadSleepInterval);
-			waitMutex.unlock();
-
 			m_dataMutex.lock();
 			while (m_keys.isEmpty() == false)
 			{
@@ -111,6 +138,22 @@ void DesktopInputController::run()
 				QThread::msleep(m_keyEventInterval);
 			}
 			m_dataMutex.unlock();
+
+			// only stop after the queue has been drained - otherwise key events
+			// queued right before destruction (e.g. the final Return of a logon) get lost
+			if (m_requestStop)
+			{
+				QMutexLocker locker(&m_dataMutex);
+				if (m_keys.isEmpty())
+				{
+					break;
+				}
+				continue;
+			}
+
+			waitMutex.lock();
+			m_inputWaitCondition.wait(&waitMutex, ThreadSleepInterval);
+			waitMutex.unlock();
 		}
 	}
 	else

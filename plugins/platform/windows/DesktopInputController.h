@@ -28,6 +28,9 @@ public:
 	void pressAndReleaseKey(QChar character);
 	void pressAndReleaseKey(QLatin1Char character);
 
+	// blocks until all queued key events have been sent (or timeout expired)
+	bool waitForAllKeysSent(int timeout = 10000);
+
 private:
 	void run();
 

@@ -22,6 +22,8 @@ public:
 	void applyConfiguration() override;
 
 private:
+	void validateLogonSwitchUserKeySequence();
+
 	Ui::WindowsPlatformConfigurationPage* ui;
 	WindowsPlatformConfiguration m_configuration;
 };
