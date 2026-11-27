@@ -239,25 +239,32 @@ bool FileTransferPlugin::handleFeatureMessage(VeyonServerInterface& server,
 	{
 		const auto collectionId = message.argument(Argument::CollectionId).toUuid();
 
-		if (m_fileCollectionContexts.contains(collectionId) == false)
+		if (message.command<FeatureCommand>() == FeatureCommand::FinishFileCollection)
 		{
-			// don't start session/worker for closing non-existent chat worker
-			if (message.command<FeatureCommand>() == FeatureCommand::FinishFileCollection &&
-				server.featureWorkerManager().isWorkerRunning(message.featureUid()) == false)
+			const auto knownCollection = m_fileCollectionContexts.remove(collectionId) > 0;
+
+			// stop the worker here rather than letting it quit on its own so that a subsequent
+			// collection reliably starts a new worker
+			if (m_fileCollectionContexts.isEmpty())
 			{
+				server.featureWorkerManager().discardPendingSessionWorkerMessages(message.featureUid());
+				server.featureWorkerManager().stopWorker(message.featureUid());
 				return true;
 			}
 
+			// don't start a worker just for finishing an unknown collection
+			if (knownCollection == false)
+			{
+				return true;
+			}
+		}
+		else if (m_fileCollectionContexts.contains(collectionId) == false)
+		{
 			m_fileCollectionContexts[collectionId] = messageContext;
 		}
 
 		// forward message to worker
 		server.featureWorkerManager().sendMessageToUnmanagedSessionWorker(message);
-
-		if (message.command<FeatureCommand>() == FeatureCommand::FinishFileCollection)
-		{
-			m_fileCollectionContexts.remove(collectionId);
-		}
 
 		return true;
 	}
