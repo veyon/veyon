@@ -4966,7 +4966,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     <name>WebApiPlugin</name>
     <message>
         <source>Show help about command</source>
-        <translation type="unfinished"/>
+        <translation>显此命令的帮助信息</translation>
     </message>
     <message>
         <source>Run WebAPI server</source>

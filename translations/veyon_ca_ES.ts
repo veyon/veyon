@@ -4963,7 +4963,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     <name>WebApiPlugin</name>
     <message>
         <source>Show help about command</source>
-        <translation type="unfinished"/>
+        <translation>Mostra l&apos;ajuda sobre l&apos;ordre</translation>
     </message>
     <message>
         <source>Run WebAPI server</source>

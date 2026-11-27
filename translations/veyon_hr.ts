@@ -4965,7 +4965,7 @@ Primjer: [^-]*-(PC[0-9]*)</translation>
     <name>WebApiPlugin</name>
     <message>
         <source>Show help about command</source>
-        <translation type="unfinished"/>
+        <translation>Pokaži pomoć o zapovijedanju</translation>
     </message>
     <message>
         <source>Run WebAPI server</source>

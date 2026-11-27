@@ -4962,7 +4962,7 @@ Példa: [^-]*-(PC[0-9]*)</translation>
     <name>WebApiPlugin</name>
     <message>
         <source>Show help about command</source>
-        <translation type="unfinished"/>
+        <translation>Parancsról segítség megjelenítése</translation>
     </message>
     <message>
         <source>Run WebAPI server</source>
