@@ -35,6 +35,7 @@ public:
 
 	void sendMessageToManagedSystemWorker(const FeatureMessage& message);
 	void sendMessageToUnmanagedSessionWorker(const FeatureMessage& message);
+	void discardPendingSessionWorkerMessages(Feature::Uid featureUid);
 
 	bool isWorkerRunning(Feature::Uid featureUid);
 

@@ -225,6 +225,13 @@ void FeatureWorkerManager::sendMessageToUnmanagedSessionWorker(const FeatureMess
 
 
 
+void FeatureWorkerManager::discardPendingSessionWorkerMessages(Feature::Uid featureUid)
+{
+	m_pendingSessionWorkerMessages.remove(featureUid);
+}
+
+
+
 void FeatureWorkerManager::enqueueSessionWorkerMessage(const FeatureMessage& message)
 {
 	// creates the queue on first use
